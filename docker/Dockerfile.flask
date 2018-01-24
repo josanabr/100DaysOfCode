@@ -4,7 +4,7 @@ MAINTAINER John Sanabria <john.sanabria@correounivalle.edu.co>
 RUN mkdir /shared
 WORKDIR /shared
 
-COPY requirements /shared
+COPY requirements.txt /shared
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN rm requirements.txt

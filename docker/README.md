@@ -21,7 +21,7 @@ En mi caso es `josanabr/minflask`.
 Una vez se tiene creado el contenedor, se puede ejecutar una prueba de la siguiente manera:
 
 ```
-docker run --rm -v $(pwd):/shared /shared/apps.py
+docker run --rm -v $(pwd):/shared /shared/app.py
 ```
 
-Se asume que en el sitio donde ejecute el contenedor, se encuentra disponible el archivo `apps.py` provisto en este directorio.
+Se asume que en el sitio donde ejecute el contenedor, se encuentra disponible el archivo `app.py` provisto en este directorio.

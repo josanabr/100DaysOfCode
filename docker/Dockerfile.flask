@@ -1,0 +1,13 @@
+FROM python:3-alpine
+MAINTAINER John Sanabria <john.sanabria@correounivalle.edu.co>
+
+RUN mkdir /shared
+WORKDIR /shared
+
+COPY requirements /shared
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN rm requirements.txt
+EXPOSE 5000
+
+ENTRYPOINT ["python"]

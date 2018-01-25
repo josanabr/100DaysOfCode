@@ -1,5 +1,7 @@
-FROM python:3-alpine
+FROM alpine
 MAINTAINER John Sanabria <john.sanabria@correounivalle.edu.co>
+
+RUN apk add --no-cache python && python -m ensurepip && rm -r /usr/lib/python*/ensurepip && pip install --upgrade pip setuptools 
 
 RUN mkdir /shared
 WORKDIR /shared
@@ -7,7 +9,7 @@ WORKDIR /shared
 COPY requirements.txt /shared
 RUN pip install --upgrade --no-cache-dir -r requirements.txt
 
-RUN rm requirements.txt
+RUN rm requirements.txt && rm -r /root/.cache
 EXPOSE 5000
 
 ENTRYPOINT ["python"]

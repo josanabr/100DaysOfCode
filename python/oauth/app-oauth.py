@@ -65,10 +65,6 @@ def login():
     callback=url_for('authorized', _external=True)
     return google.authorize(callback=callback)
  
-@app.route('/hola')
-@login_required
-def hola():
-    return "<html><h1 align=center>HOLA MUNDO</h1></html>"
  
  
 @app.route(REDIRECT_URI)
@@ -91,3 +87,4 @@ def main(port=5000):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     main()
+

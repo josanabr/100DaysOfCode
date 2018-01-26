@@ -2,7 +2,7 @@
 
 En este directorio se encontrarán códigos relacionados a código que muestra como usar el protocolo de autenticación OAuth.
 
-Para llevar a cabo esta prueba es necesario crear un contenedor como se indica en [este directorio](../../docker).
+Para llevar a cabo esta prueba es necesario crear un contenedor como se indica en [este directorio](../../docker) sección Flask.
 
 # Probando el contenedor con autenticación OAuth
 

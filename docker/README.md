@@ -32,10 +32,10 @@ Se asume que en el sitio donde ejecute el contenedor, se encuentra disponible el
 # Postgres
 
 Para crear el contenedor con Postgres y Flask se siguieron estos pasos.
-Primero, se usó el contenedor de Postgres provisto en [Docker Hub](https://hub.docker.com/_/postgres/), particularmente el contenedor con Alpine.
+Primero, se usó el contenedor de Postgres provisto en [Docker Hub](https://hub.docker.com/_/postgres/).
 
 ```
-docker pull postgres:alpine
+docker pull postgres
 ```
 
 Usando este contenedor como base, se definió el [Dockerfile.psql](./Dockerfile.psql) que permite construir un contenedor con Postgres y Flask de la siguiente manera:
@@ -44,14 +44,14 @@ Usando este contenedor como base, se definió el [Dockerfile.psql](./Dockerfile.
 docker build -t josanabr/psql -f Dockerfile.psql .
 ```
 
-Al final se tendrá un contenedor llamado `josanabr/psql` desde el cual se puede acceder a una base de datos Postgres desde el micro-framework Flask.
+Al final se tendrá un contenedor llamado `josanabr/psql_flask` desde el cual se puede acceder a una base de datos Postgres desde el micro-framework Flask.
 
 ## Probando el contenedor
 
 Una vez se tiene creado el contenedor, se puede ejecutar una prueba de la siguiente manera:
 
 ```
-docker run -p 5000:5000 --rm -v $(pwd):/shared josanabr/psql /shared/app_psql.py
+docker run -p 5000:5000 --rm -v $(pwd):/shared josanabr/psql_flask /shared/app_psql.py
 ```
 
 Se asume que en el sitio donde ejecute el contenedor, se encuentra disponible el archivo `app_psql.py` provisto en este [directorio](./app_psql.py).

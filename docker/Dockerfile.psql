@@ -1,0 +1,15 @@
+FROM postgres:alpine
+MAINTAINER John Sanabria <john.sanabria@correounivalle.edu.co>
+
+ENV req "requirements_psql.txt"
+
+RUN apk add --no-cache alpine-sdk python python-dev && python -m ensurepip && rm -r /usr/lib/python*/ensurepip && pip install --upgrade pip setuptools 
+
+RUN mkdir /shared
+WORKDIR /shared
+
+COPY ${req} /shared
+RUN pip install --upgrade --no-cache-dir -r ${req}
+
+RUN rm ${req} && rm -r /root/.cache
+ENTRYPOINT ["python"]

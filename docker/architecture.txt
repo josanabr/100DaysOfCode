@@ -1,0 +1,37 @@
+https://hub.docker.com/_/postgres/
+
++-----------+
+|  ALCHEMY  |
+|   FLASK   |
++-----v-----+
+      |
+      | |
+      | V
+      |
++-----v----+
+| POSTGRES |
++----------+
+
+Se quiere comunicar un contenedor que tenga Alchemy + Flask con otro contenedor que tenga desplegado Postgres. 
+Para lograr esta conectividad se hace necesario que un contenedor de Postgres acepte conexiones desde multiples IPs. 
+Se asume entonces que se debe modificar el archivo '/usr/share/postgresql/postgresql.conf.sample' para habilitar la conectividad desde "cualquier IP".
+
+Para acceder a la configuracion de Postgres de la imagen de 'postgres' se ejecuta el siguiente comando
+
+docker run -i --rm postgres cat /usr/share/postgresql/postgresql.conf.sample > my-postgres.conf
+
+Ahora, se tiene la configuracion de postgres en el archivo 'my-postgres.conf'
+
+Se debe modificar el archivo de configuracion para lograr la conectividad desde cualquier IP.
+Una vez se tiene la configuracion establecida como corresponde se ejecuta el contenedor de modo que se tenga en cuenta dicha configuracion, como sigue:
+
+docker run -d --name some-postgres -v "$PWD/my-postgres.conf":/etc/postgresql/postgresql.conf postgres -c 'config_file=/etc/postgresql/postgresql.conf'
+
+Desde el contenedor 'Alchemy + Flask' se debe ahora crear todo lo correspondiente al esquema de la base de datos.
+
+Otro punto a considerar es el indicar que la base de datos esta por fuera del contenedor.
+Esto garantiza que los datos persistan mas alla de la vida del contenedor.
+
+docker volume create pgdata
+
+
